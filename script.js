@@ -34,7 +34,7 @@ const initializer = () => {
     fontName.appendChild(option);
   });
 
-  //fontSize só é permitido até o tamanho 7
+  //fontSize só vai até o tamanho 7
   for (let i = 1; i < 7; i++){
     let option = document.createElement("option");
     option.value = i;
@@ -48,25 +48,25 @@ const initializer = () => {
 
 //main
 const modifyText = (command, defaultUi, value) =>{
-  //exeCommand executa p comando no texto selecionado
+  //exeCommand executa o comando no texto selecionado
   document.execCommand(command, defaultUi, value);
 };
 
-//para operações básicas que não precisaram de parametros
+//para operações que não precisam de parametros
 optionsButtons.forEach(button => {
   button.addEventListener("click", () =>{
     modifyText(button.id, false, null);
   });
 });
 
-//operações que requerem parâmetros
+//operações que precisam parâmetros
 advancedOptionsButton.forEach(button => {
   button.addEventListener("change", () =>{
     modifyText(button.id, false, button.value);
   });
 });
 
-//Link
+//Cria um hiperlink
 linkButton.addEventListener("click", () =>{
   let userLink = prompt("Enter a URL");
   if(/http/i.test(userLink)){
@@ -81,22 +81,22 @@ linkButton.addEventListener("click", () =>{
 const highlighter = (className, needsRemoval) => {
   className.forEach((button) =>{
       button.addEventListener("click", () => {
-        //needsRemoval = verdadeiro quer dizer que só um botão deve ficar "iluminado" e outro deve ficar normal
+        //needsRemoval = verdadeiro quer dizer que só um botão deve ficar "selecionado" e outro deve ficar normal
         if(needsRemoval){
           let alreadyActive = false;
 
           if(button.classList.contains("active")){
             alreadyActive = true;
           }
-          //Remove a "iluminação" dos outros botões
+          //Remove a "seleção" dos outros botões
           highlighterRemover(className);
           if(!alreadyActive){
-            //botao clicado que esta iluminado
+            //botao que clicado que vai estar "selecionado"
             button.classList.add("active");
           }
         }
         else{
-          //se outros botoes estiverem iluminados
+          //se outros botoes estiverem selecionados
           button.classList.toggle("active");
         }
       });
