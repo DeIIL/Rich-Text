@@ -35,7 +35,7 @@ const initializer = () => {
   });
 
   //fontSize só vai até o tamanho 7
-  for (let i = 1; i < 7; i++){
+  for (let i = 1; i <= 7; i++){
     let option = document.createElement("option");
     option.value = i;
     option.innerHTML = i;
